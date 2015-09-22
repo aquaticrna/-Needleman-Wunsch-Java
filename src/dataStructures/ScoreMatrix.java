@@ -7,6 +7,8 @@ public class ScoreMatrix {
 	private int columns;
 	private int size;
 	
+	//score matrices are defined by an array of score values and a corresponding 
+	//array of pointers to where values originated from this binds the two and organzies them
 	public ScoreMatrix(Double[][] scores,int[][] source){
 		this.scores = scores;
 		this.source = source;
@@ -15,6 +17,8 @@ public class ScoreMatrix {
 		this.size = rows*columns;
 	}
 	
+	//each spot on the matrix can be numbered and referenced that way, if it's too obnoxious later
+	//i'll come back and change it, currently i assume they are numbered row wise starting at 0
 	public void add(double value, int location, int origen){
 		if(location>size){
 			return;

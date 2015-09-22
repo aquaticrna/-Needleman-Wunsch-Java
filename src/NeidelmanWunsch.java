@@ -1,3 +1,4 @@
+import processes.StringScoreFunction;
 import dataStructures.ScoreMatrix;
 import dataStructures.ScoringFunction;
 import dataStructures.Sequence;
