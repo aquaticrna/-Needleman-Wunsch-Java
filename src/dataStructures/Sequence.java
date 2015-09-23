@@ -9,4 +9,6 @@ public interface Sequence<T> extends Iterable<T>{
 	
 	public T get(int i);
 	
+	public int length();
+	
 }

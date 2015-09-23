@@ -1,15 +1,27 @@
 package dataStructures;
 
+import java.awt.Point;
+
 public class ScoreMatrix {
 	private Double[][] scores;
-	private int[][] source;
+	private Point[][] source;
 	private int rows;
 	private int columns;
 	private int size;
 	
 	//score matrices are defined by an array of score values and a corresponding 
 	//array of pointers to where values originated from this binds the two and organzies them
-	public ScoreMatrix(Double[][] scores,int[][] source){
+	public ScoreMatrix(int size1, int size2){
+		size1++;
+		size2++;
+		scores = new Double[size1][size2];
+		source = new Point[size1][size2];
+		rows = size1;
+		columns = size2;
+		size = size1*size2;
+	}
+	
+	public ScoreMatrix(Double[][] scores,Point[][] source){
 		this.scores = scores;
 		this.source = source;
 		this.rows = scores.length;
@@ -17,27 +29,26 @@ public class ScoreMatrix {
 		this.size = rows*columns;
 	}
 	
-	//each spot on the matrix can be numbered and referenced that way, if it's too obnoxious later
-	//i'll come back and change it, currently i assume they are numbered row wise starting at 0
-	public void add(double value, int location, int origen){
-		if(location>size){
+	public void add(double value, int x,int y, Point origen){
+		if(x>rows|y>columns){
 			return;
 		}
-		scores[(int) Math.floor(location/columns)][location%columns] = value;
-		source[(int) Math.floor(location/columns)][location%columns] = origen;
+		scores[x][y] = value;
+		source[x][y] = origen;
 	}
 	
-	public double getScore(int location){
-		if(location>size){
+	public double getScore(int x,int y){
+		if(x>rows|y>columns){
 			return Double.NaN;
 		}
-		return scores[(int) Math.floor(location/columns)][location%columns];
+		return scores[x][y];
 	}
 	
-	public Integer getSource(int location){
-		if(location>size){
+	public Point getSource(int x,int y){
+		if(x>rows|y>columns){
 			return null;
 		}
-		return source[(int) Math.floor(location/columns)][location%columns];
+		return source[x][y];
 	}
+
 }

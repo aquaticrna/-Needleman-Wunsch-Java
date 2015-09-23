@@ -15,7 +15,7 @@ public class CharPairScore {
 		//for a more complicated scoring method, but i'm only discounting mismatches for keys that are one spot away
 		String[][] keyboard = new String[][]{{"`~","1!","2@","3#","4$","5%","6^","7&","8*","9(","0)","-_","=+",null,null,null},
 				{null,null,"q","w","e","r","t","y","u","i","o","p","[{","]}","\\|",null},
-				{null,null,null,"a","s","d","f","g","h","i","j","k","l",";:","\'\"",null},
+				{null,null,null,"a","s","d","f","g","h","j","k","l",";:","\'\"",null,null},
 				{null,null,null,null,"z","x","c","v","b","n","m",",<",".>","/?",null,null},
 				{null,null,null,null,null,null," "," "," "," "," "," "," "," "," ",null}};
 		//from the keyboard layout we build a map for speed
@@ -29,7 +29,7 @@ public class CharPairScore {
 				for(int row=-1;row<=1;row++){
 					for(int column=-1;column<=1;column++){
 						//move on if we're at x,y, out of bounds or if the target location is null
-						if((row==0&&column==0)|x+row>4|x+row<0|y+column>15|y+column<0|keyboard[x+row][y+column]==null){
+						if((row==0&&column==0)||x+row>4||x+row<0||y+column>15||y+column<0||keyboard[x+row][y+column]==null){
 							continue;
 						}
 						closeKeys = closeKeys+keyboard[x+row][y+column];
@@ -49,10 +49,10 @@ public class CharPairScore {
 	}
 	//given two characters find how close they are, perfect matches are worth 0, close matches are 1 and everything else is 3
 	public Integer getScore(String char1, String char2){
-		if(char1.toLowerCase()==char2.toLowerCase()){
+		if(char1.toLowerCase().equals(char2.toLowerCase())){
 			return 0;
 		}
-		if(keyMap.get(char1.toLowerCase()).contains(char2.toLowerCase())){
+		if (keyMap.get(char1.toLowerCase()).contains(char2.toLowerCase())){
 			return 1;
 		}
 		return 3;

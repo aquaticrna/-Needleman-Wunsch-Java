@@ -27,5 +27,9 @@ public class StringSequence implements Sequence<String> {
 	public String get(int i) {
 		return str.get(i);
 	}
-
+	
+	@Override
+	public int length(){
+		return str.size();
+	}
 }
